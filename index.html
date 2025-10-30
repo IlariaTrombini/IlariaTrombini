@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ilaria Trombini - Mathematician</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-dark: #1a1a1a;
+            --bg-medium: #2a2a2a;
+            --bg-light: #3a3a3a;
+            --accent: #4a9eff;
+            --accent-hover: #6bb1ff;
+            --text-primary: #e8e8e8;
+            --text-secondary: #b8b8b8;
+            --border: #444;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--bg-medium);
+            border-bottom: 2px solid var(--border);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--text-primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--accent);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 3rem;
+            align-items: start;
+            margin-bottom: 3rem;
+        }
+
+        .profile-img {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--accent);
+            box-shadow: 0 4px 20px rgba(74, 158, 255, 0.3);
+        }
+
+        .hero-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .hero-content .title {
+            font-size: 1.3rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .contact-info {
+            display: flex;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+
+        .contact-info a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-info a:hover {
+            color: var(--accent);
+        }
+
+        section {
+            margin-bottom: 3rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .section-content {
+            background-color: var(--bg-medium);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .timeline-item {
+            margin-bottom: 2rem;
+            padding-left: 1.5rem;
+            border-left: 3px solid var(--accent);
+        }
+
+        .timeline-item h3 {
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item .date {
+            color: var(--accent);
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item .institution {
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .publication {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: var(--bg-light);
+            border-radius: 6px;
+        }
+
+        .publication .authors {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .publication .pub-title {
+            color: var(--text-primary);
+            font-weight: bold;
+            margin: 0.5rem 0;
+        }
+
+        .publication .venue {
+            color: var(--accent);
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background-color: var(--bg-light);
+            color: var(--text-secondary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid var(--border);
+        }
+
+        footer {
+            background-color: var(--bg-medium);
+            border-top: 2px solid var(--border);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-secondary);
+            margin-top: 4rem;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+                justify-items: center;
+            }
+
+            .nav-links {
+                width: 100%;
+                justify-content: center;
+                margin-top: 1rem;
+                gap: 1rem;
+            }
+
+            .contact-info {
+                justify-content: center;
+            }
+        }
+
+        .awards-grid {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .award-item {
+            background-color: var(--bg-light);
+            padding: 1rem;
+            border-radius: 6px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .award-item .year {
+            color: var(--accent);
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .bio-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Ilaria Trombini</div>
+            <ul class="nav-links">
+                <li><a href="#" class="nav-link active" data-page="home">Home</a></li>
+                <li><a href="#" class="nav-link" data-page="research">Research</a></li>
+                <li><a href="#" class="nav-link" data-page="publications">Publications</a></li>
+                <li><a href="#" class="nav-link" data-page="teaching">Teaching</a></li>
+                <li><a href="#" class="nav-link" data-page="cv">CV</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <!-- HOME PAGE -->
+        <div id="home" class="page active">
+            <div class="hero">
+                <img src="profile.jpg" alt="Ilaria Trombini" class="profile-img">
+                <div class="hero-content">
+                    <h1>Ilaria Trombini</h1>
+                    <p class="title">Post-Doctoral Researcher in Mathematics</p>
+                    <p class="bio-text">
+                        Post-Doctoral Researcher at the University of Ferrara, specializing in stochastic optimization methods 
+                        for machine learning and deep learning applications. My research focuses on adaptive steplength selection, 
+                        line-search procedures, and variance reduction techniques.
+                    </p>
+                    <div class="contact-info">
+                        <a href="mailto:trmlri@unife.it"><i class="fas fa-envelope"></i> trmlri@unife.it</a>
+                        <a href="https://orcid.org/0000-0001-5737-1679" target="_blank"><i class="fab fa-orcid"></i> ORCID</a>
+                        <a href="https://scholar.google.com" target="_blank"><i class="fas fa-graduation-cap"></i> Google Scholar</a>
+                    </div>
+                </div>
+            </div>
+
+            <section>
+                <h2>About</h2>
+                <div class="section-content">
+                    <p class="bio-text">
+                        Born in 1997 in Portomaggiore, Italy. I completed my PhD in Mathematical, Physical and Computer Sciences 
+                        at the University of Parma in March 2025. Currently, I hold a post-doctoral position at the University 
+                        of Ferrara, where I continue my research in optimization algorithms for machine learning.
+                    </p>
+                    <p class="bio-text">
+                        I am also a part-time professor teaching Numerical Analysis I for the Bachelor's Degree in Mathematics 
+                        at the University of Ferrara since November 2025.
+                    </p>
+                </div>
+            </section>
+
+            <section>
+                <h2>Research Interests</h2>
+                <div class="section-content">
+                    <div class="tags">
+                        <span class="tag">Stochastic Optimization</span>
+                        <span class="tag">Machine Learning</span>
+                        <span class="tag">Deep Learning</span>
+                        <span class="tag">Adaptive Methods</span>
+                        <span class="tag">Line-Search Procedures</span>
+                        <span class="tag">Variance Reduction</span>
+                        <span class="tag">Mini-Batch Techniques</span>
+                        <span class="tag">Inverse Problems</span>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- RESEARCH PAGE -->
+        <div id="research" class="page">
+            <h2>Research</h2>
+            
+            <section>
+                <h3>Research Focus</h3>
+                <div class="section-content">
+                    <p class="bio-text">
+                        My research primarily focuses on stochastic gradient-like methods for machine and deep learning applications. 
+                        I investigate adaptive steplength selection rules, line-search procedures, and variance reduction techniques 
+                        through dynamic adaptive mini-batch sizing.
+                    </p>
+                </div>
+            </section>
+
+            <section>
+                <h3>Active Projects</h3>
+                <div class="section-content">
+                    <div class="awards-grid">
+                        <div class="award-item">
+                            <div class="year">2025</div>
+                            <p><strong>5x1000 - Dipartimento di Matematica ed Informatica, Unife</strong></p>
+                            <p>"Algoritmi stocastici di ottimizzazione applicati all'ambito dei problemi inversi"</p>
+                            <p style="color: var(--text-secondary); margin-top: 0.5rem;">Amount: €1,990</p>
+                        </div>
+                        <div class="award-item">
+                            <div class="year">2025</div>
+                            <p><strong>INdAM - GNCS Projects 2025</strong></p>
+                            <p>"Metodi avanzati di ottimizzazione stocastica per la risoluzione di problemi inversi di imaging"</p>
+                            <p style="color: var(--text-secondary); margin-top: 0.5rem;">PI: T. A. Bubba</p>
+                        </div>
+                        <div class="award-item">
+                            <div class="year">2024</div>
+                            <p><strong>MATH4AI</strong></p>
+                            <p>Advanced MATHematical methods for Artificial Intelligence, funded by FAIR PE0000013</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h3>Research Visits</h3>
+                <div class="section-content">
+                    <div class="timeline-item">
+                        <div class="date">Spring 2023</div>
+                        <div class="institution">University of Novi Sad, Serbia</div>
+                        <p>Extended research visit (2 months)</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- PUBLICATIONS PAGE -->
+        <div id="publications" class="page">
+            <h2>Publications</h2>
+            
+            <section>
+                <h3>PhD Thesis</h3>
+                <div class="section-content">
+                    <div class="publication">
+                        <div class="authors">I. Trombini</div>
+                        <div class="pub-title">On the hyperparameters setting for first order stochastic optimization methods in machine learning</div>
+                        <div class="venue">PhD Thesis, 2025</div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h3>Journal Articles</h3>
+                <div class="section-content">
+                    <div class="publication">
+                        <div class="authors">N. Krklec Jerinkić, F. Porta, V. Ruggiero, I. Trombini</div>
+                        <div class="pub-title">Variable metric proximal stochastic gradient methods with additional sampling</div>
+                        <div class="venue">Computational Optimization and Applications, 2025</div>
+                    </div>
+
+                    <div class="publication">
+                        <div class="authors">N. Krklec Jerinkić, V. Ruggiero, I. Trombini</div>
+                        <div class="pub-title">Spectral Stochastic Gradient Method with Additional Sampling for Finite and Infinite Sums</div>
+                        <div class="venue">Computational Optimization and Applications, Vol. 91, pp. 717-758, 2025</div>
+                    </div>
+
+                    <div class="publication">
+                        <div class="authors">G. Franchini, F. Porta, V. Ruggiero, I. Trombini, L. Zanni</div>
+                        <div class="pub-title">A stochastic gradient method with variance control and variable learning rate for Deep Learning</div>
+                        <div class="venue">Journal of Computational and Applied Mathematics, Vol. 451, p. 116083, 2024</div>
+                    </div>
+
+                    <div class="publication">
+                        <div class="authors">G. Franchini, F. Porta, V. Ruggiero, I. Trombini</div>
+                        <div class="pub-title">Correction to: A Line Search Based Proximal Stochastic Gradient Algorithm with Dynamical Variance Reduction</div>
+                        <div class="venue">Journal of Scientific Computing, Vol. 96.48, 2023</div>
+                    </div>
+
+                    <div class="publication">
+                        <div class="authors">G. Franchini, F. Porta, V. Ruggiero, I. Trombini, L. Zanni</div>
+                        <div class="pub-title">Learning rate selection in stochastic gradient methods based on line search strategies</div>
+                        <div class="venue">Applied Mathematics in Science and Engineering, Vol. 31.1, p. 2164000, 2023</div>
+                    </div>
+
+                    <div class="publication">
+                        <div class="authors">G. Franchini, F. Porta, V. Ruggiero, I. Trombini</div>
+                        <div class="pub-title">A line search based proximal stochastic gradient algorithm with dynamical variance reduction</div>
+                        <div class="venue">Journal of Scientific Computing, Vol. 94.23, 2023</div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h3>Conference Proceedings</h3>
+                <div class="section-content">
+                    <div class="publication">
+                        <div class="authors">G. Franchini, F. Porta, V. Ruggiero, I. Trombini, L. Zanni</div>
+                        <div class="pub-title">Line Search Stochastic Gradient Algorithm with a-priori rule for monitoring the control of the variance</div>
+                        <div class="venue">NUMTA 2023, Lecture Notes in Computer Science, Vol. 14476, Springer, 2025</div>
+                    </div>
+
+                    <div class="publication">
+                        <div class="authors">G. Franchini, F. Porta, V. Ruggiero, I. Trombini, L. Zanni</div>
+                        <div class="pub-title">Diagonal Barzilai-Borwein Rules in Stochastic Gradient-Like Methods</div>
+                        <div class="venue">OLA 2023, Communications in Computer and Information Science, Vol. 1824, pp. 21-35, 2023</div>
+                    </div>
+
+                    <div class="publication">
+                        <div class="authors">G. Franchini, V. Ruggiero, I. Trombini</div>
+                        <div class="pub-title">Thresholding Procedure via Barzilai-Borwein Rules for the Steplength Selection in Stochastic Gradient Methods</div>
+                        <div class="venue">LOD 2021, Lecture Notes in Computer Science, Vol. 13164, 2022</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- TEACHING PAGE -->
+        <div id="teaching" class="page">
+            <h2>Teaching Experience</h2>
+            
+            <section>
+                <h3>Current Position</h3>
+                <div class="section-content">
+                    <div class="timeline-item">
+                        <div class="date">November 2025 - Present</div>
+                        <div class="institution">University of Ferrara</div>
+                        <h3>Part-time Professor (1 CFU)</h3>
+                        <p>Analisi Numerica I - Bachelor's Degree in Mathematics</p>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h3>Seminars & Workshops</h3>
+                <div class="section-content">
+                    <div class="timeline-item">
+                        <div class="date">September 2024</div>
+                        <div class="institution">University of Ferrara</div>
+                        <p>Seminar on tensor calculus (8 hours)</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="date">September 2023</div>
+                        <div class="institution">University of Ferrara</div>
+                        <p>Seminar on tensor calculus (8 hours)</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="date">October 2022</div>
+                        <div class="institution">University of Ferrara</div>
+                        <p>Seminar on tensor calculus (8 hours)</p>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h3>Tutoring Experience</h3>
+                <div class="section-content">
+                    <div class="timeline-item">
+                        <div class="date">October 2019 - January 2025</div>
+                        <div class="institution">University of Ferrara - Mathematics and Computer Science</div>
+                        <p>Analisi Numerica I (24 hours)</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="date">September 2021 - January 2024</div>
+                        <div class="institution">University of Ferrara - Mathematics and Computer Science</div>
+                        <p>Calcolo numerico e laboratorio (27 hours)</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="date">September 2022 - November 2023</div>
+                        <div class="institution">University of Ferrara - Civil Engineering</div>
+                        <p>Introduzione a Matlab (25 hours)</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="date">November 2021 - March 2022</div>
+                        <div class="institution">University of Ferrara - Mathematics and Computer Science</div>
+                        <p>Progetto Lauree Scientifiche (76 hours)</p>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h3>Thesis Co-Supervision</h3>
+                <div class="section-content">
+                    <div class="timeline-item">
+                        <div class="date">2023-2024</div>
+                        <p><strong>Carra Irene</strong> - "Il problema inverso della ricostruzione di immagini sfocate"</p>
+                        <p>Bachelor's Degree in Mathematics</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="date">2022-2023</div>
+                        <p><strong>Fabbri Anna</strong> - "Metodi numerici per il calcolo di autovalori e autovettori"</p>
+                        <p>Bachelor's Degree in Mathematics</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="date">2021-2022</div>
+                        <p><strong>Bignozzi Dario</strong> - "Addestramento automatico mediante regressione logistica e SVM"</p>
+                        <p>Bachelor's Degree in Mathematics</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- CV PAGE -->
+        <div id="cv" class="page">
+            <h2>Curriculum Vitae</h2>
+            
+            <section>
+                <h3>Education</h3>
+                <div class="section-content">
+                    <div class="timeline-item">
+                        <div class="date">21 March 2025</div>
+                        <div class="institution">University of Parma</div>
+                        <h3>PhD in Mathematical, Physical and Computer Sciences</h3>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="date">23 July 2021</div>
+                        <div class="institution">University of Ferrara</div>
+                        <h3>Master's Degree in Mathematics and Computer Science</h3>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="date">26 July 2019</div>
+                        <div class="institution">University of Ferrara</div>
+                        <h3>Bachelor's Degree in Mathematics and Computer Science</h3>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h3>Professional Experience</h3>
+                <div class="section-content">
+                    <div class="timeline-item">
+                        <div class="date">October 2024 - Present</div>
+                        <div class="institution">University of Ferrara</div>
+                        <h3>Post-Doctoral Researcher</h3>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="date">April 2021 - May 2021</div>
+                        <div class="institution">Meeo s.r.l</div>
+                        <h3>Internship</h3>
+                        <p>Study of the development of the locust and predictions of its movement</p>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h3>Memberships</h3>
+                <div class="section-content">
+                    <div class="tags">
+                        <span class="tag">UMI - AI&ML&MAT (2025-Present)</span>
+                        <span class="tag">UMI - MIVA (2025-Present)</span>
+                        <span class="tag">Unione Matematica Italiana (2025-Present)</span>
+                        <span class="tag">OASIS (2021-Present)</span>
+                        <span class="tag">GNCS (2021-Present)</span>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h3>Conferences & Talks</h3>
+                <div class="section-content">
+                    <div class="timeline-item">
+                        <div class="date">July 2025</div>
+                        <p><strong>Applied Inverse Problems (AIP 2025)</strong> - FGV EMAp, Rio de Janeiro (invited talk)</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="date">July 2025</div>
+                        <p><strong>International Conference On Continuous Optimization (ICOOPT 2025)</strong> - University of Southern California (invited talk)</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="date">January 2025</div>
+                        <p><strong>Mathematics for AI and ML Workshop</strong> - University of Bari</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="date">July 2024</div>
+                        <p><strong>25th International Symposium on Mathematical Programming (ISMP 2024)</strong> - Montréal (invited talk)</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="date">July 2024</div>
+                        <p><strong>GIMC SIMAI YOUNG 2024</strong> - University of Napoli (invited talk)</p>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h3>Service</h3>
+                <div class="section-content">
+                    <p class="bio-text"><strong>Reviewer</strong> for Mathematical Reviews</p>
+                    <p class="bio-text"><strong>Organizer</strong> (with G. Malaspina) of Minisymposium "Optimization in Action: Advances in Stochastic and Deterministic Methods" at YAMC2025, Padova (September 2025)</p>
+                    <p class="bio-text"><strong>Scientific Committee Member</strong> for "Advanced Numerical Methods for Machine & Deep Learning", Ferrara (February 2025)</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Ilaria Trombini. All rights reserved.</p>
+        <p style="margin-top: 0.5rem;">University of Ferrara | Department of Mathematics and Computer Science</p>
+    </footer>
+
+    <script>
+        const navLinks = document.querySelectorAll('.nav-link');
+        const pages = document.querySelectorAll('.page');
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                navLinks.forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+                
+                const pageId = link.getAttribute('data-page');
+                pages.forEach(page => {
+                    page.classList.remove('active');
+                    if (page.id === pageId) {
+                        page.classList.add('active');
+                    }
+                });
+                
+                window.scrollTo(0, 0);
+            });
+        });
+    </script>
+</body>
+</html>
